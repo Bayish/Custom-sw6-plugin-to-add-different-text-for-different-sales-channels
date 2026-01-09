@@ -1,0 +1,23 @@
+
+<!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+{% block sw_settings_snippet_detail_actions_save %}
+        {% block sw_settings_snippet_list_smart_bar_actions_add %}
+            <sw-button
+                    :router-link="{
+                        name: 'sw.settings.snippet.variant.list',
+                        params: {key: translationKey},
+                        query: {limit:25, page:1, sortBy:'variant', sortDirection:'ASC', naturalSorting: false}
+                    }"
+                    v-tooltip.bottom="$tc('sw-advanced-snippet.snippet-detail.tooltip')"
+                    variant="primary"
+            >
+                {{ $tc('sw-advanced-snippet.snippet-detail.title') }}
+            </sw-button>
+        {% endblock %}
+    {% parent %}
+{% endblock %}
+
+
+
+
+

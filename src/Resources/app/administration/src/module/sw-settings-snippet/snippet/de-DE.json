@@ -1,0 +1,80 @@
+{
+    "sw-advanced-snippet": {
+        "title": "Varianten",
+        "snippet-detail": {
+            "title": "Varianten",
+            "tooltip": "Snippets Varianten"
+        },
+        "general": {
+            "name": "Snippets für Vertriebskanal",
+            "menu-item-name": "Vertriebskanal",
+            "menu-item-description": "Vertriebskanal",
+            "title": "Neue Variante hinzufügen"
+        },
+        "list": {
+            "title": "Snippet Varianten",
+            "description": "Verwalten Sie Ihren Snippet pro Vertriebskanal und pro Dynamische Produktgruppe",
+            "cardTitle": "Die Varianten",
+            "column": {
+                "salesChannel": "Vertriebskanal",
+                "set": "Snippet Set",
+                "productStream": "Dynamische Gruppe",
+                "variant":"Variante"
+            },
+            "button": {
+                "cancel": {
+                    "text": "Abbrechen"
+                },
+                "create": {
+                    "text": "Variante erstellen",
+                    "tooltipSuccess": "Neue Variante hinzufügen",
+                    "tooltipFailure": "Es ist nicht möglich zu erstellen"
+                },
+                "delete": {
+                    "text": "Löschen"
+                }
+            },
+            "message": {
+                "delete": {
+                    "success": "Sie haben erfolgreich gelöscht!",
+                    "error": "Etwas ist schiefgelaufen!"
+                }
+            },
+            "modal": {
+                "title": "Warnung",
+                "confirmDelete": "Möchten Sie die Variante \"{key}\" wirklich löschen?"
+            }
+        },
+        "detail": {
+            "title": {
+                "create": "Variante erstellen",
+                "edit": "Variante bearbeiten"
+            },
+            "label": {
+                "type": "Art der Snippet variante.",
+                "salesChannel": "Vertriebskanal",
+                "set": "Sprachpaket (Snippet Set)",
+                "productStream": "Dynamische Gruppe",
+                "variant": "Text der Snippet variante"
+            },
+            "placeholder": {
+                "type": "Wählen Sie die Art Ihrer Snippet variante aus",
+                "salesChannel": "Vertriebskanal auswählen",
+                "set": "Sprachpaket auswählen",
+                "productStream": "Dynamische Gruppe auswählen",
+                "variant": "Text...."
+            },
+            "message": {
+                "create": {
+                    "success": "Sie haben erfolgreich erstellt",
+                    "error": "Etwas ist schiefgelaufen \"{error}\""
+                },
+                "edit": {
+                    "success": "Sie haben erfolgreich bearbeitet",
+                    "error": "Etwas ist schiefgelaufen \"{error}\""
+                },
+                "warning": "Es ist nicht erlaubt, eine Snippet variante mit diesem ausgewählten Element zu erstellen. Ändern Sie das Element oder gehen Sie zu Varianten, um zu bearbeiten oder zu löschen!"
+            }
+        }
+    }
+}

@@ -1,0 +1,154 @@
+<!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+{% block sw_settings_snippet_variant_detail %}
+    <sw-page class="sw-settings-snippet-detail">
+        {% block sw_settings_snippet_variant_detail_header %}
+            <template #smart-bar-header>
+                <h2>
+                    {{ isCreateMode ? $tc('sw-advanced-snippet.detail.title.create') : $tc('sw-advanced-snippet.detail.title.edit') }}
+                </h2>
+            </template>
+        {% endblock %}
+
+        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+        {% block sw_settings_snippet_variant_detail_actions %}
+            <template #smart-bar-actions>
+                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                {% block sw_settings_snippet_variant_detail_actions_abort %}
+                    <sw-button
+                            :disabled="isLoading"
+                            :router-link="backPath"
+                    >
+                        {{ $tc('sw-settings-snippet.detail.buttonCancel') }}
+                    </sw-button>
+                {% endblock %}
+
+                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                {% block sw_settings_snippet_variant_detail_actions_save %}
+                    <sw-button-process
+                            class="sw-snippet-detail__save-action"
+                            :is-loading="isLoading"
+                            :processSuccess="processSuccess"
+                            variant="primary"
+                            @click="onSave"
+                            :disabled="processSuccess"
+                    >
+                        {{ $tc('sw-settings-snippet.detail.buttonSave') }}
+                    </sw-button-process>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+
+        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+        {% block sw_settings_snippet_variant_detail_content %}
+            <template #content>
+                <sw-card-view>
+                    <template v-if="!isLoading">
+                        <sw-card
+                                position-identifier="sw-settings-snippet-variant-edit"
+                        >
+                            {% block sw_settings_snippet_variant_detail_type %}
+                                <sw-select-field
+                                        v-model:value="type"
+                                        v-if="isCreateMode"
+                                        :label="$tc('sw-advanced-snippet.detail.label.type')"
+                                        :placeholder="$tc('sw-advanced-snippet.detail.placeholder.type')"
+                                        :required="isCreateMode"
+                                        @update:value="onChangeType"
+                                >
+                                    <option
+                                            v-for="(t, i) in types"
+                                            :key="i"
+                                            :value="t"
+                                            :selected="type && t === type"
+                                    >
+                                        {{ t }}
+                                    </option>
+                                </sw-select-field>
+                            {% endblock %}
+
+
+                            {% block sw_settings_snippet_variant_detail_sales_channel %}
+                                <sw-select-field
+                                        v-model:value="updatedVariant.salesChannelId"
+                                        :label="$tc('sw-advanced-snippet.detail.label.salesChannel')"
+                                        :placeholder="$tc('sw-advanced-snippet.detail.placeholder.salesChannel')"
+                                        @update:value="filterItems(type, isCreateMode, 'salesChannels')"
+                                        :disabled="isCreateMode && (filteredSalesChannels.length < 1 || type === null)"
+                                        required
+                                >
+                                    <option
+                                            v-for="(salesChannel, index) in filteredSalesChannels"
+                                            :key="index"
+                                            :value="salesChannel.id"
+                                            @update:value="onChangeSalesChannel(salesChannel.id)"
+                                            :selected="updatedVariant.salesChannelId && salesChannel.id === updatedVariant.salesChannelId"
+                                    >
+                                        {{ salesChannel.name }}
+                                    </option>
+                                </sw-select-field>
+                            {% endblock %}
+
+                            {% block sw_settings_snippet_variant_detail_set %}
+                                <sw-select-field
+                                        v-model:value="updatedVariant.setId"
+                                        :label="$tc('sw-advanced-snippet.detail.label.set')"
+                                        :placeholder="$tc('sw-advanced-snippet.detail.placeholder.set')"
+                                        @update:value="filterItems(type, isCreateMode, 'snippetSets')"
+                                        :disabled="isCreateMode && (filteredSnippetSets.length < 1 || type === null)"
+                                        required
+                                >
+                                    <option
+                                            v-for="(snippetSet, index) in filteredSnippetSets"
+                                            :key="index"
+                                            :value="snippetSet.id"
+                                            :selected="updatedVariant.setId && snippetSet.id === updatedVariant.setId"
+                                    >
+                                        {{ snippetSet.name }}
+                                    </option>
+                                </sw-select-field>
+                            {% endblock %}
+
+                            {% block sw_settings_snippet_variant_detail_set %}
+                                <sw-select-field
+                                        v-if="type === 'For specific product group'"
+                                        v-model:value="updatedVariant.productStreamId"
+                                        :label="$tc('sw-advanced-snippet.detail.label.productStream')"
+                                        :placeholder="$tc('sw-advanced-snippet.detail.placeholder.productStream')"
+                                        @update:value="filterItems(type, isCreateMode, 'productStreams')"
+                                        :disabled="isCreateMode && (filteredProductStreams.length < 1 || type === null)"
+                                        :required="type === 'For specific product group'"
+                                >
+                                    <option
+                                            v-for="(stream, index) in filteredProductStreams"
+                                            :key="index"
+                                            :value="stream.id"
+                                            :selected="updatedVariant.productStreamId && stream.id === updatedVariant.productStreamId"
+                                    >
+                                        {{ stream.name }}
+                                    </option>
+                                </sw-select-field>
+                            {% endblock %}
+
+                            {% block sw_settings_snippet_variant_detail %}
+                                <sw-text-field
+                                        v-model:value="updatedVariant.variant"
+                                        :disabled="isCreateMode && type === null"
+                                        :value="updatedVariant.variant"
+                                        :label="$tc('sw-advanced-snippet.detail.label.variant')"
+                                        :placeholder="$tc('sw-advanced-snippet.detail.placeholder.variant')"
+                                />
+                            {% endblock %}
+                        </sw-card>
+                    </template>
+                    <template v-else>
+                        <sw-skeleton/>
+                        <sw-skeleton/>
+                    </template>
+                </sw-card-view>
+            </template>
+        {% endblock %}
+
+    </sw-page>
+{% endblock %}
+

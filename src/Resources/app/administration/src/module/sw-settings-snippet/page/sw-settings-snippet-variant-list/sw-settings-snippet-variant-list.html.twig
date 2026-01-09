@@ -1,0 +1,261 @@
+<!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+{% block sw_settings_snippet_variant_list %}
+    <sw-page class="sw-settings-snippet-variant-list">
+        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+        {% block sw_settings_snippet_variant_list_smart_bar_header %}
+            <template #smart-bar-header>
+                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                {% block sw_settings_snippet_variant_list_smart_bar_header_title %}
+                    <h2>
+                        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                        {% block sw_settings_snippet_variant_list_smart_bar_header_title_text %}
+                            {{ $tc('sw-settings.index.title') }}
+                            <sw-icon
+                                    name="regular-chevron-right-xs"
+                                    small
+                            />
+                            {{ $tc('sw-settings-snippet.general.mainMenuItemGeneral') }}
+                            <sw-icon
+                                    name="regular-chevron-right-xs"
+                                    small
+                            />
+                            {{ $tc('sw-advanced-snippet.title') }}
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+
+            </template>
+        {% endblock %}
+
+        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+        {% block sw_settings_snippet_variant_list_actions %}
+            <template #smart-bar-actions>
+                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                {% block sw_settings_snippet_variant_list_actions_abort %}
+                    <sw-button
+                            :disabled="isLoading"
+                            :router-link="backPath"
+                    >
+                        {{ $tc('sw-advanced-snippet.list.button.cancel.text') }}
+                    </sw-button>
+                {% endblock %}
+
+                {% block sw_settings_snippet_variant_list_actions_add %}
+                    <sw-button
+                            :router-link="{
+                                name: 'sw.settings.snippet.variant.detail',
+                                params: { id: 'nope'},
+                                query: { key: translationKey, isCreateMode: 'true' }
+                            }"
+                            v-tooltip.bottom="isCreatePossible ? $tc('sw-advanced-snippet.list.button.create.tooltipSuccess'): $tc('sw-advanced-snippet.list.button.create.tooltipFailure')"
+                            variant="primary"
+                            :disabled="!isCreatePossible"
+                    >
+                        {{ $tc('sw-advanced-snippet.list.button.create.text') }}
+                    </sw-button>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+        {% block sw_settings_snippet_variant_list_card %}
+            <template #content>
+                <sw-card-view>
+                    <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                    {% block sw_settings_snippet_variant_list_card_title %}
+                        <sw-card
+                                position-identifier="sw-settings-snippet-variant-list-title"
+                                class="sw-card--large"
+                        >
+                            <h3>{{ $tc('sw-advanced-snippet.list.title') }}</h3>
+                            <p>{{ $tc('sw-advanced-snippet.list.description') }}</p>
+                        </sw-card>
+                    {% endblock %}
+
+                    <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                    {% block sw_settings_snippet_variant_list_card_list %}
+                        <sw-card
+                                position-identifier="sw-settings-snippet-variant-list-card-list"
+                                :is-loading="isLoading"
+                                :title="$tc('sw-advanced-snippet.list.cardTitle')"
+                                class="sw-card--large"
+                        >
+                            <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                            {% block sw_settings_snippet_variant_list_card_list_grid %}
+                                <template
+                                        #grid
+                                        v-if="!isLoading && snippetVariants.length > 0"
+                                >
+                                    <sw-grid
+                                            ref="snippetVariantList"
+                                            :items="snippetVariants"
+                                            :sort-direction="sortDirection"
+                                            :sort-by="sortBy"
+                                            :selectable="false"
+                                            :allow-inline-edit="false"
+                                            @sort-column="onSortColumn"
+                                            table
+                                    >
+                                        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                        {% block sw_settings_snippet_variant_list_card_list_grid_template %}
+                                            <template
+                                                    #columns="{ item }"
+                                            >
+                                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                {% block sw_settings_snippet_variant_list_card_list_grid_column_variant %}
+                                                    <sw-grid-column
+                                                            flex="minmax(200px, 1fr)"
+                                                            class="sw-settings-snippet-variant-list__column-variant"
+                                                            :label="$tc('sw-advanced-snippet.list.column.variant')"
+                                                            data-index="variant"
+                                                            truncate
+                                                            sortable
+                                                    >
+                                                        {{ item.variant }}
+                                                    </sw-grid-column>
+                                                {% endblock %}
+
+                                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                {% block sw_settings_snippet_variant_list_card_list_grid_column_sales_channel %}
+                                                    <sw-grid-column
+                                                            flex="1fr"
+                                                            class="sw-settings-snippet-variant-list__column-sales-channel"
+                                                            :label="$tc('sw-advanced-snippet.list.column.salesChannel')"
+                                                    >
+                                                        {{ getSalesChannel(item.salesChannelId) }}
+                                                    </sw-grid-column>
+                                                {% endblock %}
+
+                                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                {% block sw_settings_snippet_variant_list_card_list_grid_column_base_file %}
+                                                    <sw-grid-column
+                                                            flex="minmax(200px, 1fr)"
+                                                            class="sw-settings-snippet-variant-list__column-base-file"
+                                                            :label="$tc('sw-advanced-snippet.list.column.set')"
+                                                    >
+                                                        {{ getSetName(item.setId) }}
+                                                    </sw-grid-column>
+                                                {% endblock %}
+
+                                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                {% block sw_settings_snippet_variant_list_card_list_grid_column_product_stream %}
+                                                    <sw-grid-column
+                                                            flex="1fr"
+                                                            class="sw-settings-snippet-variant-list__column-product-stream"
+                                                            :label="$tc('sw-advanced-snippet.list.column.productStream')"
+                                                    >
+                                                        {{ getProductStream(item.productStreamId) }}
+                                                    </sw-grid-column>
+                                                {% endblock %}
+
+                                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                {% block sw_settings_snippet_variant_list_card_list_grid_column_base_action %}
+                                                    <sw-grid-column
+                                                            flex="100px"
+                                                            align="center"
+                                                    >
+                                                        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                        {% block sw_settings_snippet_variant_list_card_list_grid_column_base_action_buttons %}
+                                                            <sw-context-button>
+                                                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                                {% block sw_settings_snippet_variant_list_card_list_grid_column_base_action_btn_edit %}
+                                                                    <sw-context-menu-item
+                                                                            class="sw-setting-snippet-variant-list__edit-action"
+                                                                            :router-link="{
+                                                                                name: 'sw.settings.snippet.variant.detail',
+                                                                                params: { id: item.id},
+                                                                                query: {key: translationKey, isCreateMode: 'false'}
+                                                                            }"
+                                                                    >
+                                                                        {{ contextMenuEditSnippet }}
+                                                                    </sw-context-menu-item>
+                                                                {% endblock %}
+
+                                                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                                {% block sw_settings_snippet_variant_list_card_list_grid_column_base_action_btn_delete %}
+                                                                    <sw-context-menu-item
+                                                                            v-tooltip.left="getNoPermissionsTooltip('snippetVariant.deleter')"
+                                                                            variant="danger"
+                                                                            :disabled="!acl.can('snippetVariant.deleter')"
+                                                                            @click="onDeleteSet(item)"
+                                                                    >
+                                                                        {{ $tc('sw-advanced-snippet.list.button.delete.text') }}
+                                                                    </sw-context-menu-item>
+                                                                {% endblock %}
+                                                            </sw-context-button>
+                                                        {% endblock %}
+                                                    </sw-grid-column>
+                                                {% endblock %}
+
+                                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                {% block sw_settings_snippet_variant_list_columns_delete_modal %}
+                                                    <sw-modal
+                                                            v-if="showDeleteModal === item"
+                                                            :title="$tc('sw-advanced-snippet.list.modal.title')"
+                                                            variant="small"
+                                                            @modal-close="onCloseDeleteModal"
+                                                    >
+                                                        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                        {% block sw_settings_snippet_variant_list_delete_modal_confirm_delete_text %}
+                                                            <p class="sw-settings-snippet-variant-list__confirm-delete-text">
+                                                                {{ $tc('sw-advanced-snippet.list.modal.confirmDelete', 0, { key: item.variant }) }}
+                                                            </p>
+                                                        {% endblock %}
+
+                                                        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                        {% block sw_settings_snippet_variant_list_delete_modal_footer %}
+                                                            <template #modal-footer>
+                                                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                                {% block sw_settings_snippet_variant_list_delete_modal_cancel %}
+                                                                    <sw-button
+                                                                            size="small"
+                                                                            @click="onCloseDeleteModal"
+                                                                    >
+                                                                        {{ $tc('sw-advanced-snippet.list.button.cancel.text') }}
+                                                                    </sw-button>
+                                                                {% endblock %}
+
+                                                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                                {% block sw_settings_snippet_variant_list_delete_modal_confirm %}
+                                                                    <sw-button
+                                                                            variant="danger"
+                                                                            size="small"
+                                                                            @click="onConfirmDelete(item)"
+                                                                    >
+                                                                        {{ $tc('sw-advanced-snippet.list.button.delete.text') }}
+                                                                    </sw-button>
+                                                                {% endblock %}
+                                                            </template>
+                                                        {% endblock %}
+                                                    </sw-modal>
+                                                {% endblock %}
+                                            </template>
+                                        {% endblock %}
+
+                                        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                        {% block sw_settings_snippet_variant_list_card_list_grid_pagination %}
+                                            <template #pagination>
+                                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                                {% block sw_settings_snippet_variant_list_card_list_grid_pagination_bar %}
+                                                    <sw-pagination
+                                                            v-bind="{ page, limit, total }"
+                                                            :total-visible="7"
+                                                            @page-change="paginate"
+                                                    />
+                                                {% endblock %}
+                                            </template>
+                                        {% endblock %}
+                                    </sw-grid>
+                                </template>
+                            {% endblock %}
+                        </sw-card>
+                    {% endblock %}
+                </sw-card-view>
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}
+
+
+
+

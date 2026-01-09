@@ -1,0 +1,69 @@
+{
+    "dvsn-set-configurator": {
+        "flash": {
+            "invalid-selection": "Die Auswahl ist ungültig.",
+            "selection-loaded": "Der Konfigurator wurde erfolgreich geladen.<br />Bitte verwenden Sie folgende Url, um die Konfiguration erneut zu laden:<br />#url#"
+        },
+        "product": {
+            "card": {
+                "price-from": "Ab"
+            }
+        },
+        "product-detail": {
+            "save-selection": "Konfiguration speichern"
+        },
+        "widgets": {
+            "variant-selection": {
+                "select-variant": "Variante wählen"
+            },
+            "product-info": {
+                "to-article": "Zum Artikel"
+            }
+        },
+        "configurator": {
+            "selectable": "Auswählen",
+            "selected": "Ausgewählt",
+            "set-info": "[x] von [y] Produkten ausgewählt",
+            "from-price": "Ab"
+        },
+        "summary": {
+            "title": "Zusammenfassung",
+            "empty-choice": "---"
+        },
+        "template": {
+            "list": {
+                "mandatory": "Pflichtfeld",
+                "empty-choice": {
+                    "name": "Keine Auswahl"
+                }
+            },
+            "slider": {
+                "mandatory": "Pflichtfeld",
+                "empty-choice": {
+                    "name": "Keine Auswahl",
+                    "select": "Auswählen"
+                },
+                "product": {
+                    "select": "Auswählen"
+                }
+            },
+            "gallery": {
+                "mandatory": "Pflichtfeld",
+                "empty-choice": {
+                    "name": "Keine Auswahl",
+                    "select": "Auswählen"
+                },
+                "product": {
+                    "select": "Auswählen"
+                }
+            }
+        }
+    },
+    "checkout": {
+        "invalidComponentQuantityReduceQuantityError": "Die Stückzahl der gewünschten Konfiguration wurde automatisch angepasst, da die beinhaltenden Komponenten nicht in ausreichender Menge verfügbar sind.",
+        "invalidComponentQuantityRemoveConfiguratorError": "Die gewünschte Konfiguration wurde aus dem Warenkorb entfernt, da die beinhaltenden Komponenten nicht in ausreichender Menge verfügbar sind.",
+        "invalidConfiguratorQuantityReduceQuantityError": "Die Stückzahl der gewünschten Konfiguration wurde automatisch angepasst, da die beinhaltenden Komponenten nicht in ausreichender Menge verfügbar sind.",
+        "InvalidConfiguratorQuantityRemoveConfiguratorError": "Die gewünschte Konfiguration wurde aus dem Warenkorb entfernt, da die beinhaltenden Komponenten nicht in ausreichender Menge verfügbar sind.",
+        "invalidSelectionError": "Die gewünschte Konfiguration ist ungültig und wurde entfernt."
+    }
+}

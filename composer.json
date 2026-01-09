@@ -1,0 +1,44 @@
+{
+  "name": "bm/advanced-snippets",
+  "description": "Plugin to advance snippets",
+  "version": "1.0.0",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Brand meets Media",
+      "role": "Manufacturer",
+      "homepage": "https://bm.media/"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "BmAdvancedSnippets\\": "src/"
+    }
+  },
+  "require": {
+    "shopware/core":"^6.4"
+  },
+  "extra": {
+    "shopware-plugin-class": "BmAdvancedSnippets\\BmAdvancedSnippets",
+    "copyright": "bm.media",
+    "plugin-icon": "src/Resources/plugin.png",
+
+    "label": {
+      "de-DE": "Snippets will be translated for storefront",
+      "en-GB": "Advanced snippets"
+    },
+    "description": {
+      "de-DE": "Unser Plugin passt Snippets für verschiedene Vertriebskanäle und dynamische Produktgruppen an und hilft bei der Optimierung von Inhalten zur Erreichung bestimmter Marketingziele.",
+      "en-GB": "Our plugin adapts snippets  for different sales channels and dynamic product groups and helps to optimise content to achieve specific marketing goals."
+    },
+    "manufacturerLink": {
+      "de-DE": "https://bm.media/",
+      "en-GB": "https://bm.media/"
+    },
+    "supportLink": {
+      "de-DE": "https://bm.media/",
+      "en-GB": "https://bm.media/"
+    }
+  }
+}

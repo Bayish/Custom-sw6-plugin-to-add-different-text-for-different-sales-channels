@@ -1,0 +1,69 @@
+{
+    "dvsn-set-configurator": {
+        "flash": {
+            "invalid-selection": "The selection is invalid.",
+            "selection-loaded": "The configurator was loaded successfully.<br />Please use the following url to reload the configuration:<br />#url#"
+        },
+        "product": {
+            "card": {
+                "price-from": "From"
+            }
+        },
+        "product-detail": {
+            "save-selection": "Save configuration"
+        },
+        "widgets": {
+            "variant-selection": {
+                "select-variant": "Choose variant"
+            },
+            "product-info": {
+                "to-article": "To the product"
+            }
+        },
+        "configurator": {
+            "selectable": "Select",
+            "selected": "Selected",
+            "set-info": "Selected [x] out of [y] products",
+            "from-price": "From"
+        },
+        "summary": {
+            "title": "Summary",
+            "empty-choice": "---"
+        },
+        "template": {
+            "list": {
+                "mandatory": "Mandatory",
+                "empty-choice": {
+                    "name": "Reset choice"
+                }
+            },
+            "slider": {
+                "mandatory": "Mandatory",
+                "empty-choice": {
+                    "name": "Reset choice",
+                    "select": "Select"
+                },
+                "product": {
+                    "select": "Select"
+                }
+            },
+            "gallery": {
+                "mandatory": "Mandatory",
+                "empty-choice": {
+                    "name": "Reset choice",
+                    "select": "Select"
+                },
+                "product": {
+                    "select": "Select"
+                }
+            }
+        }
+    },
+    "checkout": {
+        "invalidComponentQuantityReduceQuantityError": "The number of pieces of the desired configuration was automatically adjusted, because the containing components are not available in sufficient quantity.",
+        "invalidComponentQuantityRemoveConfiguratorError": "The requested configuration has been removed from the shopping cart because the components it contains are not available in sufficient quantity.",
+        "invalidConfiguratorQuantityReduceQuantityError": "The number of pieces of the desired configuration was automatically adjusted, because the containing components are not available in sufficient quantity.",
+        "InvalidConfiguratorQuantityRemoveConfiguratorError": "The requested configuration has been removed from the shopping cart because the components it contains are not available in sufficient quantity.",
+        "invalidSelectionError": "The requested configuration is invalid and has been removed."
+    }
+}
